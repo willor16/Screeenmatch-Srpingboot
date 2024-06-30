@@ -1,6 +1,8 @@
 package com.Wilmer.Screenmatch;
 
 import com.Wilmer.Screenmatch.Conections.ConectionApi;
+import com.Wilmer.Screenmatch.Conections.ConvierteDatos;
+import com.Wilmer.Screenmatch.Model.DatosSerie;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +19,9 @@ public class ScreenmatchApplication implements CommandLineRunner  {
 	public void run(String... args) throws Exception {
 		//probando conexion
 		var conexion = new ConectionApi();
-		var  respuesta =conexion.consumoApi("http://www.omdbapi.com/?t=game+of+thrones&season=1&episode=1&apikey=9d2ac174");
-		System.out.println(respuesta);
+		var  json =conexion.consumoApi("http://www.omdbapi.com/?t=game+of+thrones&apikey=9d2ac174");
+		ConvierteDatos conversor = new ConvierteDatos();
+		var datos = conversor.convierteDatos(json, DatosSerie.class);
+		System.out.println("con metodo donversor de datos "+datos);
 	}
 }
