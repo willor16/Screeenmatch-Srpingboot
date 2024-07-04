@@ -2,6 +2,7 @@ package com.Wilmer.Screenmatch;
 
 import com.Wilmer.Screenmatch.Conections.ConectionApi;
 import com.Wilmer.Screenmatch.Conections.ConvierteDatos;
+import com.Wilmer.Screenmatch.Model.DatosEpisodios;
 import com.Wilmer.Screenmatch.Model.DatosSerie;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,5 +24,9 @@ public class ScreenmatchApplication implements CommandLineRunner  {
 		ConvierteDatos conversor = new ConvierteDatos();
 		var datos = conversor.convierteDatos(json, DatosSerie.class);
 		System.out.println("con metodo donversor de datos "+datos);
+		json = conexion.consumoApi("http://www.omdbapi.com/?t=game+of+thrones&season=1&episode=1&apikey=9d2ac174");
+		DatosEpisodios datosEpisodios = conversor.convierteDatos(json, DatosEpisodios.class);
+		System.out.println("datos de los episodios: " + datosEpisodios);
+
 	}
 }
