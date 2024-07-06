@@ -7,8 +7,11 @@ import com.Wilmer.Screenmatch.Model.DatosSerie;
 import com.Wilmer.Screenmatch.Model.DatosTemporadass;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Principal {
     private ConectionApi consulta = new ConectionApi();
@@ -40,6 +43,15 @@ public class Principal {
             }
         }
 
-        temporadasLista.forEach(t->t.listaDeEpsiodios().forEach(e-> System.out.println("con funciones lamda" + e.Titulo())));
+        System.out.println("top 5 episodios");
+        List<DatosEpisodios> datosEpisodios = temporadasLista.stream()
+                .flatMap(t->t.listaDeEpsiodios().stream())
+                .collect(Collectors.toList());
+
+        datosEpisodios.stream()
+                .sorted(Comparator.comparing(DatosEpisodios::calificacion).reversed())
+                .filter(e -> ! e.calificacion().equalsIgnoreCase("N/A"))
+                .limit(5)
+                .forEach(System.out::println);
     }
 }

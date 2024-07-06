@@ -5,7 +5,6 @@ import com.Wilmer.Screenmatch.Conections.ConvierteDatos;
 import com.Wilmer.Screenmatch.Model.DatosEpisodios;
 import com.Wilmer.Screenmatch.Model.DatosSerie;
 import com.Wilmer.Screenmatch.Model.DatosTemporadass;
-import com.Wilmer.Screenmatch.principal.EjemploConStream;
 import com.Wilmer.Screenmatch.principal.Principal;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,7 +25,5 @@ public class ScreenmatchApplication implements CommandLineRunner  {
 	public void run(String... args) throws Exception {
 		Principal principal = new Principal();
 		principal.muestraMenu();
-		EjemploConStream ejemploUsoStream = new EjemploConStream();
-		ejemploUsoStream.ejemploStream();
 	}
 }
