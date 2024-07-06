@@ -2,6 +2,7 @@ package com.Wilmer.Screenmatch.principal;
 
 import com.Wilmer.Screenmatch.Conections.ConectionApi;
 import com.Wilmer.Screenmatch.Conections.ConvierteDatos;
+import com.Wilmer.Screenmatch.Model.DatosEpisodios;
 import com.Wilmer.Screenmatch.Model.DatosSerie;
 import com.Wilmer.Screenmatch.Model.DatosTemporadass;
 
@@ -31,5 +32,14 @@ public class Principal {
             temporadasLista.add(datosDeLaTemporaeda);
         }
         temporadasLista.forEach(System.out::println);
+        //mostrar solo el titulo de cada episodio y cada temporada
+        for (int i = 0; i < datosSeires.totalDeTemporadas(); i++) {
+            List<DatosEpisodios> episodiostemporadas = temporadasLista.get(i).listaDeEpsiodios();
+            for (int j = 0; j < episodiostemporadas.size(); j++) {
+                System.out.println("episodio: "+j+episodiostemporadas.get(j).Titulo());
+            }
+        }
+
+        temporadasLista.forEach(t->t.listaDeEpsiodios().forEach(e-> System.out.println("con funciones lamda" + e.Titulo())));
     }
 }
